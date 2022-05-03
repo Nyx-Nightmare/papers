@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import logo from '../BAU_logo.png'
-export default class Navbar extends Component {
+export default class NavbarProfile extends Component {
   render() {
     return (
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">
+          <a class="navbar-brand" href="/Home">
             <img class=" img-thumbnail" src={logo} alt = "Beirut Arab University"/>
           </a>
           <button
@@ -23,14 +23,19 @@ export default class Navbar extends Component {
           <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link active h5" href="/">
-                  Sign In
+                <a class="nav-link active h5" href="/Home">
+                  Home
                   <span class="visually-hidden">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link h5" href="/Freshman">
-                  Freshman
+                <a class="nav-link h5" href="/Forms">
+                  Forms
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link h5" href="/Pending">
+                  Submitted Forms
                 </a>
               </li>
               <li class="nav-item">
