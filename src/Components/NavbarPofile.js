@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import logo from '../BAU_logo.png'
+import React, { Component } from 'react';
+import logo from '../BAU_logo.png';
 export default class NavbarProfile extends Component {
   render() {
     return (
