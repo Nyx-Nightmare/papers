@@ -31,12 +31,12 @@ export default class Navbar extends Component {
                   Freshman
                 </a>
               </li>
-              <li class="nav-item offset-2">
+              <li class="nav-item offset-1">
                 <a class="nav-link h5" href="/About">
                   iConnect
                 </a>
               </li>
-              <li class="nav-item offset-2">
+              <li class="nav-item offset-1">
                 <a class="nav-link h5" href="/About">
                   About
                 </a>
