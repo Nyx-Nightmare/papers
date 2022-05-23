@@ -76,7 +76,7 @@ export default class SignIn extends Component {
                       
                       <button
                         type="submit"
-                        class="btn btn-success offset-4"
+                        class="btn btn-success offset-4 rounded-pill"
                         onClick={changeHref}
                       >
                         Log In
