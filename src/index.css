@@ -53,7 +53,7 @@
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 136, 136, 136;
-  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-body-bg-rgb: 248, 249, 250;
   --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -69,7 +69,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #888;
-  --bs-body-bg: #fff;
+  --bs-body-bg: #f8f9fa;
 }
 *,
 ::after,
@@ -1996,6 +1996,16 @@ progress {
   -moz-appearance: none;
   appearance: none;
   border-radius: 0.4rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control-div {
+  display: block;
+  width: 100%;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 25px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -10574,61 +10584,93 @@ legend {
 .list-group-item h6 {
   color: inherit;
 }
-.email {
-  position: absolute;
-  width: 672px;
-  height: 98px;
-  left: 1031px;
-  top: 524px;
+.id {
+  font-family: 'Brawler';
+  width:86.5%;
+  font-size: 1.2em;
+  font-weight: 400;
+  line-height: 4em;
+  color: #888;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius:  0px 25px 25px 0px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   box-shadow: 0px 4px 40px rgba(111, 111, 111, 0.19),
     inset 0px 15px 15px 2px rgba(204, 204, 204, 0.06);
-  border-radius: 27px;
 }
 .password {
-  position: absolute;
-  width: 672px;
-  height: 98px;
-  left: 1031px;
-  top: 676px;
+  font-family: 'Brawler';
+  color: #888;
+  right:-10px;
+  width:86.7%;
+  font-size: 1.2em;
+  font-weight: 400;
+  line-height: 4em;
+  color: #888;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0px 25px 25px 0px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   box-shadow: 0px 4px 40px rgba(111, 111, 111, 0.19),
     inset 0px 15px 15px 2px rgba(204, 204, 204, 0.06);
-  border-radius: 27px;
 }
 
 .logo {
   width: 75px;
   height: 75px;
   border-radius: 150px;
-  background-color: #78c2ad;
+  background-color: var(--bs-success);
   text-align: center;
 }
 .thumbnail {
   margin-top: 8px;
-  width: 60px;
+  width: 55px;
   height: 55px;
 }
-.title {
-  width: 722px;
-  height: 316px;
-  left: 994px;
-  top: 236px;
+.thumbnail2 {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  bottom:5px;
+  margin-right: 14.5px;
+  position: relative;
 
+}
+.thumbnail3 {
+  display: inline-block;
+  width: 54px;
+  height: 54px;
+  right:6px;
+  bottom:5px;
+  position: relative;
+
+}
+.title {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  font-size: 70px;
+  font-size: 60px;
   text-align: center;
-
+  width:30rem;
   color: #878787;
   text-shadow: 0px 4px 10px rgba(82, 82, 82, 0.35);
 }
 .image {  
   position: absolute;
-  z-index:-1;
+  z-index:1;
   width: 1200px;
-  height: 500px;
-  left: -150px;
-  top: 49px;
+  height: 700px;
+  left: -130px;
+  top: 0px;
+  filter: saturate(120%);
 }
 
 .nav {
@@ -10651,4 +10693,10 @@ legend {
   text-align: right;
 
   color: #a4a4a4;
+}
+.btn-login{
+  font-weight: 700;
+  font-size: 25px;
+  height:50px;
+  width:200px;
 }

@@ -9,11 +9,13 @@ import Profile from "./Components/Profile";
 import About from "./Components/About";
 import Available from "./Components/Avialable";
 import Pending from "./Components/Pending";
+import LogIn from "./Components/LogIn";
+
 export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<SignIn />} />
+        <Route path="/" element={<LogIn />} />
         <Route path="/:id" element={<Profile />} />
         <Route path="/About" element={<About />} />
         <Route path="/Pending" element={<Pending />} />

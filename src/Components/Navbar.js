@@ -32,7 +32,7 @@ export default class Navbar extends Component {
                 </a>
               </li>
               <li class="nav-item offset-1">
-                <a class="nav-link h5" href="/About">
+                <a class="nav-link h5" href="https://iconnect.bau.edu.lb/web/home">
                   iConnect
                 </a>
               </li>

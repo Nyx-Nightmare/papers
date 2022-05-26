@@ -52,9 +52,11 @@ export default class SignIn extends Component {
                 >
                   <label class="title">Fill your forms with one click!</label>
                   <div class="card-body offset-2" style={{position:'relative', top:-100}}>
-                    <div class="form-group">
+                    <form>
+                      <div class="form-group">                      
                       <input
                         type="email"
+                        id="studentID"
                         class="form-control"
                         name="InputID"
                         aria-describedby="emailHelp"
@@ -65,6 +67,7 @@ export default class SignIn extends Component {
                     <div class="form-group">
                       <input
                         type="password"
+                        id="studentID"
                         class="form-control"
                         name="InputPassword1"
                         placeholder="Password"
@@ -81,7 +84,8 @@ export default class SignIn extends Component {
                       >
                         Log In
                       </button>
-                    </div>
+                      
+                    </div></form>
                   </div>
                 </div>
               </div>
