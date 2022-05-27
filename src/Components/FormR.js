@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { saveAs } from 'file-saver'
-import schol from "../PDFs/Scholarship.pdf"
+import fresh from "../PDFs/Freshman.pdf"
 
-const FromS = () => {
+const FromR = () => {
   const getForms = (e) => {
-          saveAs(schol, 'Scholarship.pdf')
+          saveAs(fresh, 'Registartion.pdf')
   }
   return (
     <div>
@@ -12,4 +12,4 @@ const FromS = () => {
     </div>
   )
 }
-export default FromS
+export default FromR

@@ -1,61 +1,9 @@
 import React, { Component, useState } from 'react'
 import Navbar from './Navbar'
-import Froms from './Forms'
-import useCollapse from 'react-collapsed'
+import FromR from './FormR'
+import FromS from './FormS'
 import axios from 'axios'
 
-function CollapsibleButton() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <button
-      style={{
-        display: "inline-block",
-      }}
-      onClick={() => setOpen(!open)}
-    >
-      <span
-        style={{
-          // This makes it feel animated:
-          transition: "transform 200ms linear",
-          // This rotates the element:
-          transform: `rotateZ(${open ? "180deg" : 0})`,
-          display: "inline-block",
-        }}
-      >
-        {"^"} 
-      </span>
-    </button>
-  );
-}
-
-function Collapsible() {
-  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse()
-  return (
-    <div className="collapsible">
-      <div className="header row" >
-        <div class="col-8">
-        <h5>Freshman Registration Form</h5></div>
-        <div class="col-2"  {...getToggleProps()}> <CollapsibleButton /> </div>
-      </div>
-      <div {...getCollapseProps()}>
-        <div className="content">
-          <Froms />
-        </div>
-      </div>
-      <div className="header row" >
-        <div class="col-8">
-        <h5>Scholarship Form</h5></div>
-        <div class="col-2"  {...getToggleProps()}> <CollapsibleButton /> </div>
-      </div>
-      <div {...getCollapseProps()}>
-        <div className="content">
-          <Froms />
-        </div>
-      </div>
-    </div>
-  )
-}
 function UploadR() {
   const [file, setFile] = useState()
   function handleChange(event) {
@@ -64,7 +12,7 @@ function UploadR() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    const url = 'http://localhost:3000/uploadFile'
+    const url = 'http://localhost:3001/uploadFile'
     const formData = new FormData()
     formData.append('file', file)
     formData.append('fileName', file.name)
@@ -87,7 +35,7 @@ function UploadR() {
           <input type="file" onChange={handleChange} />
         </div>
       </div>
-      <div class = " offset-7">
+      <div class=" offset-7">
         <button type="submit">Upload</button>
       </div>
     </form>
@@ -101,7 +49,7 @@ function UploadS() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    const url = 'http://localhost:3000/uploadFile'
+    const url = 'http://localhost:3001/uploadFile'
     const formData = new FormData()
     formData.append('file', file)
     formData.append('fileName', file.name)
@@ -124,55 +72,78 @@ function UploadS() {
           <input type="file" onChange={handleChange} />
         </div>
       </div>
-      <div class = " offset-7">
+      <div class=" offset-7">
         <button type="submit">Upload</button>
       </div>
     </form>
   )
 }
-export default class Freshman extends Component {
-  render() {
-    return (
-      <div>
-        <Navbar />
-        <div class="row ">
-          <div
-            class="card border-info mb-3 offset-1 col-4"
-            style={{ maxWidth: '50rem', marginTop: '7rem' }}
-          >
-            <fieldset>
-              <div
-                class="card-header h4"
-                style={{ marginBottom: '10px', marginTop: '-5px' }}
-              >
-                Available Forms
+const Freshman = () => {
+  return (
+    <div>
+      <Navbar />
+      <div class="row ">
+        <div
+          class="card border-info mb-3 offset-1 col-4"
+          style={{ maxWidth: '50rem', marginTop: '7rem' }}
+        >
+          <fieldset>
+            <div
+              class="card-header h4"
+              style={{ marginBottom: '10px', marginTop: '-5px' }}
+            >
+              Available Forms
+            </div>
+            <div class="card-body">
+              <div className="collapsible">
+                <div className="header row">
+                  <div class="col-8">
+                    <h5>Freshman Registration Form</h5>
+                  </div>
+                  <div class="col-2"> </div>
+                </div>
+                <div>
+                  <div className="content">
+                    <FromR />
+                  </div>
+                </div>
+                <div className="header row">
+                  <div class="col-8">
+                    <h5>Scholarship Form</h5>
+                  </div>
+                  <div class="col-2"> </div>
+                </div>
+                <div>
+                  <div className="content">
+                    <FromS />
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <Collapsible />
-              </div>
-            </fieldset>
-          </div>
-          <div
-            class="card border-info mb-3 offset-1 col-4"
-            style={{ maxWidth: '70rem', marginTop: '7rem' }}
-          >
-            <fieldset>
-              <div
-                class="card-header h4"
-                style={{ marginBottom: '10px', marginTop: '-5px' }}
-              >
-                Upload Forms
-              </div>
-              <div class="card-body">
-                <UploadR />
-              </div>
-              <div class="card-body">
-                <UploadS />
-              </div>
-            </fieldset>
-          </div>
+            </div>
+          </fieldset>
+        </div>
+        <div
+          class="card border-info mb-3 offset-1 col-4"
+          style={{ maxWidth: '70rem', marginTop: '7rem' }}
+        >
+          <fieldset>
+            <div
+              class="card-header h4"
+              style={{ marginBottom: '10px', marginTop: '-5px' }}
+            >
+              Upload Forms
+            </div>
+            <div class="card-body">
+              <UploadR />
+            </div>
+            <div class="card-body">
+              <UploadS />
+            </div>
+          </fieldset>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+export default Freshman

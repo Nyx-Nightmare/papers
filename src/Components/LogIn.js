@@ -1,63 +1,42 @@
-import { useRef, useState, useEffect, useContext } from 'react'
-import AuthContext from '../Context/AuthProvider'
+import { useRef, useState } from 'react'
+import axios from 'axios'
 import Navbar from './Navbar'
-import axios from '../API/Axios'
 import illus from './Images/illustration.png'
 import pass from './Images/pass.png'
 import profile from './Images/profile.png'
-const LOGIN_URL = '/auth'
 
 const Login = () => {
-  const { setAuth } = useContext(AuthContext)
-  const userRef = useRef()
-  const errRef = useRef()
-
   const [user, setUser] = useState('')
   const [pwd, setPwd] = useState('')
-  const [errMsg, setErrMsg] = useState('')
+  const [loginStatus, setloginStatus] = useState('')
+  const [CSS, setCSS] = useState('')
+  const [show,setShow]=useState(false)
   const [success, setSuccess] = useState(false)
 
-  useEffect(() => {
-    userRef.current.focus()
-  }, [])
-
-  useEffect(() => {
-    setErrMsg('')
-  }, [user, pwd])
+  const hide = async () => {
+    setShow(false)
+    setloginStatus("")
+    setCSS("")
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
-        },
-      )
-      console.log(JSON.stringify(response?.data))
-      //console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken
-      const roles = response?.data?.roles
-      setAuth({ user, pwd, roles, accessToken })
-      setUser('')
-      setPwd('')
-      setSuccess(true)
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('No Server Response')
-      } else if (err.response?.status === 400) {
-        setErrMsg('Missing Username or Password')
-      } else if (err.response?.status === 401) {
-        setErrMsg('Unauthorized')
-      } else {
-        setErrMsg('Login Failed')
-      }
-      errRef.current.focus()
-    }
+    axios
+      .post('http://localhost:3001/login', {
+        studentID: user,
+        studentPass: pwd,
+      })
+      .then((response) => {
+        if (response.data.message) {
+          setShow(true)
+          setCSS('alert alert-dismissible alert-danger')
+          setloginStatus(response.data.message)
+        } else {
+          setSuccess(true)
+        }
+      })
   }
+
   return (
     <>
       {success ? (
@@ -86,17 +65,20 @@ const Login = () => {
               </div>
               <div class="col-5">
                 <div>
-                  <label class="title">
-                    Fill your forms with{' '}
+                  <div class="title">
+                    Fill your forms with
                     <strong class="text-success">one click!</strong>
-                  </label>
-                  <div class=" card-body offset-1 mt-5">
-                    <div
-                      ref={errRef}
-                      className={errMsg ? 'errmsg' : 'offscreen'}
-                      aria-live="assertive"
-                    >
-                      <p> {errMsg}</p>
+                  </div>
+                  <div class=" card-body mt-5">
+                    <div class={CSS}>
+                    {show?<button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert" 
+                        id ="close"
+                        onClick={hide}
+                      ></button>:null}
+                      <strong>{loginStatus}</strong>
                     </div>
                     <form onSubmit={handleSubmit}>
                       <div class="row ">
@@ -109,8 +91,6 @@ const Login = () => {
                             name="InputID"
                             aria-describedby="emailHelp"
                             placeholder="123456789"
-                            ref={userRef}
-                            autoComplete="off"
                             onChange={(e) => setUser(e.target.value)}
                             value={user}
                             required
