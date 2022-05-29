@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react'
+import {useState } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
 import illus from './Images/illustration.png'
 import pass from './Images/pass.png'
-import profile from './Images/profile.png'
+import profile from './Images/user.png'
 
 const Login = () => {
   const [user, setUser] = useState('')
@@ -42,7 +42,7 @@ const Login = () => {
       {success ? (
         (window.location = '/' + user)
       ) : (
-        <div>
+        <div class="background">
           <Navbar />
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -66,8 +66,7 @@ const Login = () => {
               <div class="col-5">
                 <div>
                   <div class="title">
-                    Fill your forms with
-                    <strong class="text-success">one click!</strong>
+                    Fill your forms with    <strong class="text-success">one click!</strong>
                   </div>
                   <div class=" card-body mt-5">
                     <div class={CSS}>
@@ -82,15 +81,15 @@ const Login = () => {
                     </div>
                     <form onSubmit={handleSubmit}>
                       <div class="row ">
-                        <div class=" form-control-div bg-success">
-                          <img class="thumbnail2" src={profile} alt=""></img>
+                        <div class=" form-control-div ">
+                          <img class="thumbnail3" src={profile} alt=""></img>
                           <input
                             type="text"
                             id="studentID"
                             class="id"
                             name="InputID"
                             aria-describedby="emailHelp"
-                            placeholder="123456789"
+                            placeholder="ID"
                             onChange={(e) => setUser(e.target.value)}
                             value={user}
                             required
@@ -98,7 +97,7 @@ const Login = () => {
                         </div>
                       </div>
                       <div class="row mt-4  ">
-                        <div class="form-control-div bg-success">
+                        <div class="form-control-div">
                           <img class="thumbnail3" src={pass} alt=""></img>
                           <input
                             type="password"

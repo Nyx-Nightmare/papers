@@ -14,17 +14,6 @@ const Available = () => {
     setCSS('')
   }
   const getForms = (e) => {
-    axios
-      .post('http://localhost:3001/2Forms')
-      .then((response) => {
-        if (response.data.message) {
-          setShow(true)
-          setCSS('alert alert-dismissible alert-danger')
-          setloginStatus(response.data.message)
-        } else {
-          console.log(response.data)
-        }
-      })
   }
   return (
     

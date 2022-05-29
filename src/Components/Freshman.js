@@ -1,145 +1,150 @@
-import React, { Component, useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Navbar from './Navbar'
-import FromR from './FormR'
-import FromS from './FormS'
 import axios from 'axios'
+import { saveAs } from 'file-saver'
+import fresh from '../PDFs/Freshman.pdf'
+import upload from './Images/upload.png'
 
-function UploadR() {
-  const [file, setFile] = useState()
-  function handleChange(event) {
-    setFile(event.target.files[0])
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault()
-    const url = 'http://localhost:3001/uploadFile'
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('fileName', file.name)
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    }
-    axios.post(url, formData, config).then((response) => {
-      console.log(response.data)
-    })
-  }
-  return (
-    <form onSubmit={handleSubmit}>
-      <div class="row">
-        <div class="col-6">
-          <h5>Registration upload</h5>
-        </div>
-        <div class="col-3">
-          <input type="file" onChange={handleChange} />
-        </div>
-      </div>
-      <div class=" offset-7">
-        <button type="submit">Upload</button>
-      </div>
-    </form>
-  )
-}
-function UploadS() {
-  const [file, setFile] = useState()
-  function handleChange(event) {
-    setFile(event.target.files[0])
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault()
-    const url = 'http://localhost:3001/uploadFile'
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('fileName', file.name)
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    }
-    axios.post(url, formData, config).then((response) => {
-      console.log(response.data)
-    })
-  }
-  return (
-    <form onSubmit={handleSubmit}>
-      <div class="row">
-        <div class="col-6">
-          <h5>Scholarship upload</h5>
-        </div>
-        <div class="col-3">
-          <input type="file" onChange={handleChange} />
-        </div>
-      </div>
-      <div class=" offset-7">
-        <button type="submit">Upload</button>
-      </div>
-    </form>
-  )
-}
 const Freshman = () => {
+  const [form, setform] = useState('')
+  const [file, setFile] = useState()
+  const fileRef = useRef()
+  const [isOpen, setIsOpen] = useState(false)
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const setfresh = () => {
+    setform('freshman')
+  }
+  const setscholar = () => {
+    setform('scholarship')
+  }
+  const getForms = (e) => {
+    if (form === 'freshman') {
+      saveAs(fresh, 'Registartion.pdf')
+    } else {
+      //saveAs(scholar, 'Scholarship.pdf')
+    }
+  }
+  function handleChange(event) {
+    setFile(event.target.files[0])
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const url = 'http://localhost:3001/uploadFile'
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('fileName', file.name)
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    }
+    axios.post(url, formData, config).then((response) => {
+      console.log(response.data)
+    })
+  }
   return (
-    <div>
+    <div class="background ">
       <Navbar />
-      <div class="row ">
-        <div
-          class="card border-info mb-3 offset-1 col-4"
-          style={{ maxWidth: '50rem', marginTop: '7rem' }}
-        >
-          <fieldset>
-            <div
-              class="card-header h4"
-              style={{ marginBottom: '10px', marginTop: '-5px' }}
-            >
-              Available Forms
+      <div class="cardform">
+        <div class="cardform-header">Available Forms</div>
+        <div>
+          <div class="row cardform-title">
+            <div class="col-8">Freshman Registration Form</div>{' '}
+            <div class="col-2">
+              <button
+                class="btn-form rounded-pill "
+                onClick={() => {
+                  setfresh()
+                  getForms()
+                }}
+              >
+                Download
+              </button>
             </div>
-            <div class="card-body">
-              <div className="collapsible">
-                <div className="header row">
-                  <div class="col-8">
-                    <h5>Freshman Registration Form</h5>
+            <div class="col-2">
+              <button
+                onClick={() => {
+                  setfresh()
+                  togglePopup()
+                }}
+                class="btn-form rounded-pill"
+              >
+                Upload
+              </button>
+            </div>
+          </div>
+          <div class="row cardform-title">
+            <div class="col-8">Scholarship Form</div>{' '}
+            <div class="col-2">
+              <button
+                class="btn-form rounded-pill "
+                onClick={() => {
+                  setscholar()
+                  getForms()
+                }}
+              >
+                Download
+              </button>
+            </div>
+            <div class="col-2">
+              <button
+                onClick={() => {
+                  setscholar()
+                  togglePopup()
+                }}
+                class="btn-form rounded-pill"
+              >
+                Upload
+              </button>
+            </div>
+          </div>
+          {isOpen ? (
+            <div class="popup offset-6">
+              <form onSubmit={handleSubmit}>
+                <div class="row">
+                  <div class="col-7">
+                    <div class="uploadimg" onClick={() => fileRef.current.click()}>
+                      <img
+                        src={upload}
+                        class="img2 mb-8"
+                        alt=""
+                      />
+                      <br />
+                      <label class="text-success ">Click to choose files</label>
+                      <input
+                        type="file"
+                        ref={fileRef}
+                        class="choose"
+                        onChange={handleChange}
+                        style={{ display: 'none' }}
+                      />
+                    </div>
                   </div>
-                  <div class="col-2"> </div>
-                </div>
-                <div>
-                  <div className="content">
-                    <FromR />
+                  <div class=" col-3 ">
+                    <div class="row uploadText">
+                      Form Title
+                      <input type="text" class="uploadInput"></input>
+                      Your Name
+                      <input type="text" class="uploadInput"></input>
+                    </div>
+                    <div class="row">
+                      <button
+                        type="submit"
+                        class="btn-upload rounded-pill bg-success"
+                      >
+                        Upload
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div className="header row">
-                  <div class="col-8">
-                    <h5>Scholarship Form</h5>
-                  </div>
-                  <div class="col-2"> </div>
-                </div>
-                <div>
-                  <div className="content">
-                    <FromS />
-                  </div>
-                </div>
-              </div>
+              </form>
             </div>
-          </fieldset>
-        </div>
-        <div
-          class="card border-info mb-3 offset-1 col-4"
-          style={{ maxWidth: '70rem', marginTop: '7rem' }}
-        >
-          <fieldset>
-            <div
-              class="card-header h4"
-              style={{ marginBottom: '10px', marginTop: '-5px' }}
-            >
-              Upload Forms
-            </div>
-            <div class="card-body">
-              <UploadR />
-            </div>
-            <div class="card-body">
-              <UploadS />
-            </div>
-          </fieldset>
+          ) : null}
         </div>
       </div>
     </div>

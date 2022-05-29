@@ -2001,12 +2001,20 @@ progress {
 .form-control-div {
   display: block;
   width: 100%;
+  left: -40px;
   border: 1px solid #ced4da;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 25px;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border: 0px;
+  background: linear-gradient(
+    90deg,
+    rgba(86, 204, 157, 1) 12%,
+    rgba(237, 237, 237, 0) 12%
+  );
+  box-shadow: 0px 4px 40px rgba(111, 111, 111, 0.19),
+    inset 0px 15px 15px 2px rgba(204, 204, 204, 0.06);
+  border-radius: 27px;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-control {
@@ -10586,41 +10594,38 @@ legend {
 }
 .id {
   font-family: 'Brawler';
-  width:86.5%;
+  font-style: normal;
   font-size: 1.2em;
   font-weight: 400;
+
+  width: 88.9%;
+  position: relative;
+  background: rgba(237, 237, 237, 0.36);
   line-height: 4em;
-  color: #888;
-  background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius:  0px 25px 25px 0px;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  box-shadow: 0px 4px 40px rgba(111, 111, 111, 0.19),
-    inset 0px 15px 15px 2px rgba(204, 204, 204, 0.06);
-}
-.password {
-  font-family: 'Brawler';
-  color: #888;
-  right:-10px;
-  width:86.7%;
-  font-size: 1.2em;
-  font-weight: 400;
-  line-height: 4em;
-  color: #888;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 0px solid #ced4da;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border-radius: 0px 25px 25px 0px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  box-shadow: 0px 4px 40px rgba(111, 111, 111, 0.19),
-    inset 0px 15px 15px 2px rgba(204, 204, 204, 0.06);
+}
+.password {
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2em;
+  position: relative;
+  width: 89%;
+  line-height: 4em;
+  background: rgba(237, 237, 237, 0.36);
+  background-clip: padding-box;
+  border: 0px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0px 25px 25px 0px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .logo {
@@ -10635,23 +10640,13 @@ legend {
   width: 55px;
   height: 55px;
 }
-.thumbnail2 {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  bottom:5px;
-  margin-right: 14.5px;
-  position: relative;
-
-}
 .thumbnail3 {
   display: inline-block;
   width: 54px;
   height: 54px;
-  right:6px;
-  bottom:5px;
+  right: 4px;
+  bottom: 4px;
   position: relative;
-
 }
 .title {
   font-family: 'Montserrat';
@@ -10659,17 +10654,18 @@ legend {
   font-weight: 400;
   font-size: 60px;
   text-align: center;
-  width:30rem;
+  width: 30rem;
+  margin-top: 70px;
   color: #878787;
   text-shadow: 0px 4px 10px rgba(82, 82, 82, 0.35);
 }
-.image {  
+.image {
   position: absolute;
-  z-index:1;
+  z-index: 1;
   width: 1200px;
   height: 700px;
   left: -130px;
-  top: 0px;
+  top: 50px;
   filter: saturate(120%);
 }
 
@@ -10694,9 +10690,129 @@ legend {
 
   color: #a4a4a4;
 }
-.btn-login{
+.btn-login {
   font-weight: 700;
   font-size: 25px;
-  height:50px;
-  width:200px;
+  height: 50px;
+  width: 200px;
+}
+
+.cardform {
+  height: 45rem;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding: 3rem 3rem;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-clip: border-box;
+  box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.09);
+  border-radius: 83px 83px 0px 0px;
+  background: var(--bs-white);
+}
+.cardform-header {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 49px;
+
+  color: #737373;
+}
+.background {
+  background: linear-gradient(180deg, #f9f9f9 0%, #ececf0 100%);
+}
+.cardform-title {
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  margin-top:1.5rem;
+  margin-left:0rem;
+
+  color: #737373;
+
+  mix-blend-mode: normal;
+}
+
+.btn-form{
+  font-family: 'Brawler';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 30px;
+text-align: center;
+background: #E7E7E7;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.09);
+color: #A9A9A9;
+mix-blend-mode: normal;
+border:0px;
+padding: 0.3rem 2rem;
+}
+.btn-upload{
+  font-family: 'Brawler';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 30px;
+text-align: center;
+background: var(--bs-success);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.09);
+color:var(--bs-white);
+mix-blend-mode: normal;
+border:0px;
+padding: 0.3rem 2rem;
+}
+
+.popup {
+  margin-top:2rem;
+  background: #F9F9F9;
+border-radius: 25px;
+}
+.uploadimg{
+  margin-left:2rem;
+  margin-right:2rem;
+  margin-top:3rem;
+  margin-bottom:3rem;
+  width:25rem;
+  height:17rem;
+  text-align:center;
+  background: var(--bs-white);
+  border-radius: 25px;
+}
+.img2{
+  margin-top:5rem;
+  width:60px;
+  height:60px;
+}
+
+.uploadText{
+  font-family: 'Brawler';
+  font-style: normal;
+  font-size:30px;
+  font-weight: 400;
+  margin-right:2rem;
+  margin-top:3rem;
+  margin-bottom:3rem;
+  width:20rem;
+  text-align:left;
+  color: #A9A9A9;
+}
+
+.uploadInput{
+  font-family: 'Brawler';
+  font-style: normal;
+  font-size:30px;
+  font-weight: 400;
+  color: #A9A9A9;
+  background: transparent;
+  border:0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
