@@ -3904,6 +3904,82 @@ fieldset:disabled .btn {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
 }
+.nav-link-custom {
+  color: #646464;
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 500;
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-left:2rem;
+  margin-top:-2.5rem;
+  text-decoration: none;
+}
+.nav-link-custom2 {
+  color: #646464;
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 500;
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-left:3rem;
+  margin-top:-5.2rem;
+  text-decoration: none;
+}
+.nav-link-custom3 {
+  color: #646464;
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 500;
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-left:0.5rem;
+  margin-top:-0.1rem;
+  text-decoration: none;
+}
+.nav-link-customG {
+  color: var(--bs-success);
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 700;
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-left:2rem;
+  margin-top:-2.5rem;
+  text-decoration: none;
+}
+.nav-link-customG2 {
+  color: var(--bs-success);
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 700;
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-left:3rem;
+  margin-top:-4.6rem;
+  text-decoration: none;
+}
+.nav-body {
+  display: block;
+  width:100%;
+  height:65px;
+  padding: 0rem 1rem;
+  text-decoration: none;
+  background:transparent;
+  margin-bottom:1rem;
+  border-radius:83px;
+}
+.nav-bodyG {
+  display: block;
+  width:100%;
+  height:65px;
+  padding: 0rem 1rem;
+  margin-bottom:1rem;
+  text-decoration: none;
+  background:var(--bs-white);
+  border-radius:83px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
     transition: none;
@@ -4019,6 +4095,16 @@ fieldset:disabled .btn {
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
+}
+.navbar-brand2 {
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-top: 4rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  text-decoration: none;
+  white-space: nowrap;
+  text-align: justify;
 }
 .navbar-nav {
   display: -ms-flexbox;
@@ -10635,10 +10721,24 @@ legend {
   background-color: var(--bs-success);
   text-align: center;
 }
+.logo2 {
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  background-color: var(--bs-success);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.09);
+  text-align: center;
+  padding: 0.2rem;
+  margin-left: 1rem;
+}
 .thumbnail {
   margin-top: 8px;
   width: 55px;
   height: 55px;
+}
+.thumbnail2 {
+  width: 60px;
+  height: 60px;
 }
 .thumbnail3 {
   display: inline-block;
@@ -10646,6 +10746,26 @@ legend {
   height: 54px;
   right: 4px;
   bottom: 4px;
+  position: relative;
+}
+.thumbnail4 {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  position: relative;
+}
+.thumbnail5 {
+  display: inline-block;
+  width: 45px;
+  height: 35px;
+  right:5px;
+  position: relative;
+}
+.thumbnail6 {
+  display: inline-block;
+  width: 30px;
+  height: 48px;
+  top:8px;
   position: relative;
 }
 .title {
@@ -10659,6 +10779,15 @@ legend {
   color: #878787;
   text-shadow: 0px 4px 10px rgba(82, 82, 82, 0.35);
 }
+.title2 {
+  color: #979595;
+  font-family: 'Brawler';
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
 .image {
   position: absolute;
   z-index: 1;
@@ -10668,6 +10797,24 @@ legend {
   top: 50px;
   filter: saturate(120%);
 }
+
+.nav-item-custom {
+  color: #737373;
+  width: 100%;
+  margin-left: 2rem;
+  border-color: #eceeef #eceeef #fff;
+  font-size: 25px;
+  flex-basis: 0;
+  flex: 1 1 auto;
+  flex-grow: 1;
+  text-align: left;
+  font-family: 'Brawler';
+  -ms-flex: 1 1 auto;
+  -ms-flex-preferred-size: 0;
+  -ms-flex-positive: 1;
+  mix-blend-mode: normal;
+}
+
 
 .nav {
   font-family: 'Brawler';
@@ -10689,6 +10836,26 @@ legend {
   text-align: right;
 
   color: #a4a4a4;
+}
+.nav3 {
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: left;
+  margin-left: 0.5rem;
+  color: #a4a4a4;
+}
+.nav4 {
+  font-family: 'Brawler';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+  text-align: left;
+  margin-top: 10px;
+  color: #646464;
+
+  mix-blend-mode: normal;
 }
 .btn-login {
   font-weight: 700;
@@ -10714,6 +10881,37 @@ legend {
   border-radius: 83px 83px 0px 0px;
   background: var(--bs-white);
 }
+.cardform {
+  height: 45rem;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding: 3rem 3rem;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-clip: border-box;
+  box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.09);
+  border-radius: 83px 83px 0px 0px;
+  background: var(--bs-white);
+}
+.cardform2 {
+  height: 49.5rem;
+  padding: 3rem 3rem;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-clip: border-box;
+  box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.09);
+  border-radius: 83px 0px 0px 83px;
+  background: var(--bs-white);
+}
 .cardform-header {
   padding: 0.5rem 1rem;
   margin-bottom: 0;
@@ -10726,94 +10924,121 @@ legend {
 
   color: #737373;
 }
+.cardform-title2 {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0;
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+
+  color: #737373;
+}
 .background {
   background: linear-gradient(180deg, #f9f9f9 0%, #ececf0 100%);
-  height:52rem;
+  height: 52rem;
+}
+.background2 {
+  background: linear-gradient(180deg, #f9f9f9 0%, #ececf0 100%);
+  
 }
 .cardform-title {
   font-family: 'Brawler';
   font-style: normal;
   font-weight: 400;
   font-size: 40px;
-  margin-top:1.5rem;
-  margin-left:0rem;
+  margin-top: 1.5rem;
+  margin-left: 0rem;
 
   color: #737373;
 
   mix-blend-mode: normal;
 }
 
-.btn-form{
+.btn-form {
   font-family: 'Brawler';
-font-style: normal;
-font-weight: 400;
-font-size: 30px;
-line-height: 30px;
-text-align: center;
-background: #E7E7E7;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.09);
-color: #A9A9A9;
-mix-blend-mode: normal;
-border:0px;
-padding: 0.3rem 2rem;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: #e7e7e7;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.09);
+  color: #a9a9a9;
+  mix-blend-mode: normal;
+  border: 0px;
+  padding: 0.3rem 2rem;
 }
-.btn-upload{
+.btn-upload {
   font-family: 'Brawler';
-font-style: normal;
-font-weight: 400;
-font-size: 30px;
-line-height: 30px;
-text-align: center;
-background: var(--bs-success);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.09);
-color:var(--bs-white);
-mix-blend-mode: normal;
-border:0px;
-padding: 0.3rem 2rem;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: var(--bs-success);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.09);
+  color: var(--bs-white);
+  mix-blend-mode: normal;
+  border: 0px;
+  padding: 0.3rem 2rem;
 }
 
 .popup {
-  margin-top:2rem;
-  background: #F9F9F9;
-border-radius: 25px;
+  margin-top: 2rem;
+  background: #f9f9f9;
+  border-radius: 25px;
 }
-.uploadimg{
-  margin-left:2rem;
-  margin-right:2rem;
-  margin-top:3rem;
-  margin-bottom:3rem;
-  width:25rem;
-  height:17rem;
-  text-align:center;
+.uploadimg {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  width: 25rem;
+  height: 17rem;
+  text-align: center;
   background: var(--bs-white);
   border-radius: 25px;
 }
-.img2{
-  margin-top:5rem;
-  width:60px;
-  height:60px;
+.img2 {
+  margin-top: 5rem;
+  width: 60px;
+  height: 60px;
 }
 
-.uploadText{
+.uploadText {
   font-family: 'Brawler';
   font-style: normal;
-  font-size:30px;
+  font-size: 30px;
   font-weight: 400;
-  margin-right:2rem;
-  margin-top:3rem;
-  margin-bottom:3rem;
-  width:20rem;
-  text-align:left;
-  color: #A9A9A9;
+  margin-right: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  width: 20rem;
+  text-align: left;
+  color: #a9a9a9;
 }
 
-.uploadInput{
+.uploadInput {
   font-family: 'Brawler';
   font-style: normal;
-  font-size:30px;
+  font-size: 30px;
   font-weight: 400;
-  color: #A9A9A9;
+  color: #a9a9a9;
   background: transparent;
-  border:0px;
+  border: 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.item-custom2 {
+  color: #646464;
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 500;
+  font-size:30px;
+  display: block;
+  margin-top:15rem;
+  margin-left:4rem;
+  text-decoration: none;
+  background:transparent;
+  border:0px;
 }
