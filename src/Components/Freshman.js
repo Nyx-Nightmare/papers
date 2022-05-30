@@ -4,12 +4,15 @@ import axios from 'axios'
 import { saveAs } from 'file-saver'
 import fresh from '../PDFs/Freshman.pdf'
 import upload from './Images/upload.png'
+import { useNavigate } from 'react-router-dom'
 
 const Freshman = () => {
+  var history = useNavigate()
   const [form, setform] = useState('')
-  const [file, setFile] = useState()
-  const fileRef = useRef()
+  const [file, setFile] = useState('')
+  const [name,setName] = useState('')
   const [isOpen, setIsOpen] = useState(false)
+  const [namef, setNamef] = useState('')
 
   const togglePopup = () => {
     setIsOpen(!isOpen)
@@ -23,29 +26,44 @@ const Freshman = () => {
   }
   const getForms = (e) => {
     if (form === 'freshman') {
-      saveAs(fresh, 'Registartion.pdf')
+      saveAs(fresh, 'Freshman.pdf')
     } else {
       //saveAs(scholar, 'Scholarship.pdf')
     }
   }
   function handleChange(event) {
-    setFile(event.target.files[0])
+    setFile(event.target.files)
   }
 
   function handleSubmit(event) {
     event.preventDefault()
-    const url = 'http://localhost:3001/uploadFile'
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('fileName', file.name)
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
+    const data = new FormData()
+    for (var x = 0; x < file.length; x++) {
+      data.append('files', file[x])
+      let filename = file[x].name
+
+      if (filename === 'Freshman.pdf') {
+        setNamef(filename.substring(0, filename.length - 4))
+      } else if (filename === 'Scholarship.pdf') {
+        setNamef(filename.substring(0, filename.length - 4))
+      }
     }
-    axios.post(url, formData, config).then((response) => {
-      console.log(response.data)
-    })
+    console.log(data.getAll('files'))
+    axios
+      .post('http://localhost:3001/checkFile', { fileName: namef })
+      .then((response) => {
+        if (response.data.message) {
+          console.log(response.data.message)
+        } else {
+          history('/202089/ADVISOR', {
+            state: {
+              name:name,
+              filename:namef,
+              files:file,
+            },
+          })
+        }
+      })
   }
   return (
     <div class="background ">
@@ -108,20 +126,15 @@ const Freshman = () => {
               <form onSubmit={handleSubmit}>
                 <div class="row">
                   <div class="col-7">
-                    <div class="uploadimg" onClick={() => fileRef.current.click()}>
-                      <img
-                        src={upload}
-                        class="img2 mb-8"
-                        alt=""
-                      />
+                    <div class="uploadimg">
+                      <img src={upload} class="img2 mb-8" alt="" />
                       <br />
                       <label class="text-success ">Click to choose files</label>
                       <input
                         type="file"
-                        ref={fileRef}
+                        multiple
                         class="choose"
                         onChange={handleChange}
-                        style={{ display: 'none' }}
                       />
                     </div>
                   </div>
@@ -130,7 +143,7 @@ const Freshman = () => {
                       Form Title
                       <input type="text" class="uploadInput"></input>
                       Your Name
-                      <input type="text" class="uploadInput"></input>
+                      <input type="text" class="uploadInput" onChange={(e) => setName(e.target.value)}></input>
                     </div>
                     <div class="row">
                       <button

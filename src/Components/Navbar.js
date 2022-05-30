@@ -9,9 +9,9 @@ export default class Navbar extends Component {
             <img class="thumbnail" src={BAUlogo} alt="Beirut Arab University" />
           </a>
           <a class="navbar-brand" href="/">
-          <h3 class="nav">iForm</h3>
+            <h3 class="nav">iForm</h3>
           </a>
-          
+
           <button
             class="navbar-toggler"
             type="button"
@@ -32,7 +32,10 @@ export default class Navbar extends Component {
                 </a>
               </li>
               <li class="nav-item offset-1">
-                <a class="nav-link h5" href="https://iconnect.bau.edu.lb/web/home">
+                <a
+                  class="nav-link h5"
+                  href="https://iconnect.bau.edu.lb/web/home"
+                >
                   iConnect
                 </a>
               </li>
@@ -40,6 +43,13 @@ export default class Navbar extends Component {
                 <a class="nav-link h5" href="/About">
                   About
                 </a>
+              </li>
+              <li class="nav-item offset-1">
+                <div class="rounded-pill bg-success">
+                  <a class="nav-link2 h5" href="/">
+                    Login
+                  </a>
+                </div>
               </li>
             </ul>
           </div>

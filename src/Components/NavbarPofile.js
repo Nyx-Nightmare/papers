@@ -1,34 +1,42 @@
 import React, { useState, useEffect } from 'react'
 import logo from './Images/logo.bau2.png'
 import home from './Images/home.png'
+import homeg from './Images/home green.png'
 import history from './Images/history.png'
 import historyG from './Images/history green.png'
 import formsG from './Images/Forms green.png'
 import form from './Images/Forms.png'
+import about from './Images/about.png'
+import aboutG from './Images/about green.png'
 
 const NavbarProfile = () => {
-  const id = window.location.pathname.substring(0, 9)
+  const id = window.location.pathname.substring(0, 10)
   const style = window.location.pathname.substring(
-    13,
+    11,
     window.location.pathname.length,
   )
-  console.log(style)
-  const Pending = id + ' /Pending'
-  const Forms = id + ' /Forms'
+  const Pending = id + '/Pending'
+  const Forms = id + '/Forms'
+  const About = id + '/AboutP'
 
   let [showH, setShowH] = useState(true)
   let [showF, setShowF] = useState(true)
+  let [showM, setShowM] = useState(true)
+  let [showA, setShowA] = useState(true)
 
   let [CSSF, setCSSF] = useState('nav-link-custom')
   let [CSSH, setCSSH] = useState('nav-link-custom')
+  let [CSSA, setCSSA] = useState('nav-link-custom')
+  let [CSSM, setCSSM] = useState('nav-link-custom')
 
   let [CSSFB, setCSSFB] = useState('row nav-body')
   let [CSSHB, setCSSHB] = useState('row nav-body')
+  let [CSSAB, setCSSAB] = useState('row nav-body')
+  let [CSSMB, setCSSMB] = useState('row nav-body')
 
   useEffect(() => {
     setStyle()
   })
-
   const setStyle = () => {
     if (style === 'Pending') {
       setShowH(false)
@@ -39,6 +47,16 @@ const NavbarProfile = () => {
       setCSSF('nav-link-customG')
       setCSSFB('row nav-bodyG ')
     } 
+    
+    else if (style === 'AboutP') {
+      setShowA(false)
+      setCSSA('nav-link-customG')
+      setCSSAB('row nav-bodyG ')
+    }else {
+      setShowM(false)
+      setCSSM('nav-link-customG')
+      setCSSMB('row nav-bodyG')
+    }
   }
 
   return (
@@ -53,23 +71,31 @@ const NavbarProfile = () => {
           </a>
         </li>
         <br />
-        <li class="nav-item-custom row ">
-          <div class="col-1">
-            <a href={id}>
-              {
-                <img
-                  class="thumbnail4"
-                  src={home}
-                  alt="Beirut Arab University"
-                />
-              }
-            </a>
-          </div>
-          <div class="col-5">
-            <a class="nav-link-custom3 " href={id}>
-              Home
-              <span class="visually-hidden">(current)</span>
-            </a>
+        <li class="nav-item-custom ">
+          <div class={CSSMB}>
+            <div class="col-5">
+              <a href={id}>
+                {showM ? (
+                  <img
+                    class="thumbnail2"
+                    src={home}
+                    alt="Beirut Arab University"
+                  />
+                ) : (
+                  <img
+                    class="thumbnail2"
+                    src={homeg}
+                    alt="Beirut Arab University"
+                  />
+                )}
+              </a>
+            </div>
+            <div class="col-5">
+              <a class={CSSM} href={id}>
+                Home
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </div>
           </div>
         </li>
         <li class="nav-item-custom ">
@@ -78,25 +104,24 @@ const NavbarProfile = () => {
         <br />
         <li class="nav-item-custom">
           <div class={CSSFB}>
-            <div class="col-2">
+            <div class="col-5">
               <a href={Forms}>
                 {showF ? (
                   <img
-                    class="thumbnail6"
+                    class="thumbnail2"
                     src={form}
                     alt="Beirut Arab University"
                   />
                 ) : (
                   <img
-                    class="thumbnail6"
+                    class="thumbnail2"
                     src={formsG}
                     alt="Beirut Arab University"
                   />
                 )}
-                
               </a>
             </div>
-            <div class="col-0">
+            <div class="col-5">
               <a class={CSSF} href={Forms}>
                 Forms
                 <span class="visually-hidden">(current)</span>
@@ -106,34 +131,66 @@ const NavbarProfile = () => {
         </li>
         <li class="nav-item-custom">
           <div class={CSSHB}>
-            <div class="col-2">
-            <a href={Pending}>
-              {showH ? (
-                <img
-                  class="thumbnail5"
-                  src={history}
-                  alt="Beirut Arab University"
-                />
-              ) : (
-                <img
-                  class="thumbnail6"
-                  src={historyG}
-                  alt="Beirut Arab University"
-                />
-              )}
-            </a></div>
-          
-          <div class="col-2">
-            <a class={CSSH} href={Pending}>
-              History
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </div>
+            <div class="col-5">
+              <a href={Pending}>
+                {showH ? (
+                  <img
+                    class="thumbnail2"
+                    src={history}
+                    alt="Beirut Arab University"
+                  />
+                ) : (
+                  <img
+                    class="thumbnail2"
+                    src={historyG}
+                    alt="Beirut Arab University"
+                  />
+                )}
+              </a>
+            </div>
+
+            <div class="col-5">
+              <a class={CSSH} href={Pending}>
+                History
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </div>
           </div>
         </li>
+        <li class="nav-item-custom">
+          <div class={CSSAB}>
+            <div class="col-5">
+              <a href={About}>
+                {showA ? (
+                  <img
+                    class="thumbnail2"
+                    src={about}
+                    alt="Beirut Arab University"
+                  />
+                ) : (
+                  <img
+                    class="thumbnail2"
+                    src={aboutG}
+                    alt="Beirut Arab University"
+                  />
+                )}
+              </a>
+            </div>
 
+            <div class="col-5">
+              <a class={CSSA} href={About}>
+                About
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </div>
+          </div>
+        </li>
       </ul>
-      <button class="item-custom2">Logout</button>
+      <button class="item-custom2">
+        <a href="/" class="nav-link-custom4">
+          Logout <span class="visually-hidden">(current)</span>
+        </a>
+      </button>
     </nav>
   )
 }

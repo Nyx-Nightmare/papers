@@ -1,4 +1,4 @@
-import {useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
 import illus from './Images/illustration.png'
@@ -10,13 +10,15 @@ const Login = () => {
   const [pwd, setPwd] = useState('')
   const [loginStatus, setloginStatus] = useState('')
   const [CSS, setCSS] = useState('')
-  const [show,setShow]=useState(false)
+  const [show, setShow] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [admin,setAdmin] = useState(false)
+  const [adminName,setAdminName] = useState("")
 
   const hide = async () => {
     setShow(false)
-    setloginStatus("")
-    setCSS("")
+    setloginStatus('')
+    setCSS('')
   }
 
   const handleSubmit = async (e) => {
@@ -32,6 +34,25 @@ const Login = () => {
           setCSS('alert alert-dismissible alert-danger')
           setloginStatus(response.data.message)
         } else {
+          setAdmin(false)
+          console.log(response.data)
+          setSuccess(true)
+        }
+      })
+      axios
+      .post('http://localhost:3001/login/admin', {
+        adminID: user,
+        adminPass: pwd,
+      })
+      .then((response) => {
+        if (response.data.message) {
+          setShow(true)
+          setCSS('alert alert-dismissible alert-danger')
+          setloginStatus(response.data.message)
+        } else {
+          setAdmin(true)
+          setAdminName(response.data[0].adminName)
+          console.log(response.data)
           setSuccess(true)
         }
       })
@@ -40,23 +61,14 @@ const Login = () => {
   return (
     <>
       {success ? (
-        (window.location = '/' + user)
+        (admin ? (
+          window.location = '/' + user + '/' + adminName
+        ):(
+          window.location = '/' + user
+        ))
       ) : (
-        <div class="background">
+        <div>
           <Navbar />
-          <meta charSet="utf-8" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          {/* mobile metas */}
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
-          {/* site metas */}
-          <title />
-          <meta name="keywords" content="" />
-          <meta name="description" content="" />
-          <meta name="author" content="" />
-          <meta charSet="utf-8" />
-          <title />
 
           <div class="container">
             <div class="row">
@@ -66,52 +78,62 @@ const Login = () => {
               <div class="col-5">
                 <div>
                   <div class="title">
-                    Fill your forms with    <strong class="text-success">one click!</strong>
+                    Fill your forms with{' '}
+                    <strong class="text-success">one click!</strong>
                   </div>
                   <div class=" card-body mt-5">
                     <div class={CSS}>
-                    {show?<button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="alert" 
-                        id ="close"
-                        onClick={hide}
-                      ></button>:null}
+                      {show ? (
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="alert"
+                          id="close"
+                          onClick={hide}
+                        ></button>
+                      ) : null}
                       <strong>{loginStatus}</strong>
                     </div>
                     <form onSubmit={handleSubmit}>
-                      <div class="row ">
-                        <div class=" form-control-div ">
-                          <img class="thumbnail3" src={profile} alt=""></img>
-                          <input
-                            type="text"
-                            id="studentID"
-                            class="id"
-                            name="InputID"
-                            aria-describedby="emailHelp"
-                            placeholder="ID"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
-                            required
-                          />
+                      <div class="form-control-div">
+                        <div class="row">
+                          <div class="  col-2">
+                            <img class="thumbnail3" src={profile} alt=""></img>
+                          </div>
+                          <div class="col-10">
+                            <input
+                              type="text"
+                              id="studentID"
+                              class="id"
+                              name="InputID"
+                              aria-describedby="emailHelp"
+                              placeholder="ID"
+                              onChange={(e) => setUser(e.target.value)}
+                              value={user}
+                              required
+                            />
+                          </div>
                         </div>
                       </div>
-                      <div class="row mt-4  ">
-                        <div class="form-control-div">
-                          <img class="thumbnail3" src={pass} alt=""></img>
+                      <div class="form-control-div mt-4">
+                        <div class="row">
+                          <div class="  col-2">
+                            <img class="thumbnail3" src={pass} alt=""></img>
+                          </div>
+                          <div class="col-10">
                           <input
-                            type="password"
-                            id="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                            class="password"
-                            name="InputPassword"
-                            placeholder="Password"
-                          />
+                                type="password"
+                                id="password"
+                                onChange={(e) => setPwd(e.target.value)}
+                                value={pwd}
+                                required
+                                class="password"
+                                name="InputPassword"
+                                placeholder="Password"
+                              />
+                          </div>
                         </div>
                       </div>
-
                       <div class="form-group mt-4">
                         <button
                           type="submit"
