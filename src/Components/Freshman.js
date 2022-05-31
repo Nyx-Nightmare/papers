@@ -10,7 +10,7 @@ const Freshman = () => {
   var history = useNavigate()
   const [form, setform] = useState('')
   const [file, setFile] = useState('')
-  const [name,setName] = useState('')
+  const [name, setName] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [namef, setNamef] = useState('')
 
@@ -55,13 +55,34 @@ const Freshman = () => {
         if (response.data.message) {
           console.log(response.data.message)
         } else {
-          history('/202089/ADVISOR', {
-            state: {
-              name:name,
-              filename:namef,
-              files:file,
-            },
-          })
+          axios
+            .post('http://localhost:3001/checkFile', { fileName: namef })
+            .then((response) => {
+              if (response.data.message) {
+                console.log(response.data.message)
+              } else {
+                console.log(response.data[0])
+                axios
+                  .post('http://localhost:3001/getID/admin', {
+                    fileLevel: response.data[0].FormLevel,
+                  })
+                  .then((res) => {
+                    if (res.data.message) {
+                      console.log(res.data.message)
+                    } else {
+                      const admin='/'+res.data[0].adminID +'/'+res.data[0].adminName
+                      console.log(res.data)
+                      history(admin, {
+                        state: {
+                          name: name,
+                          filename: namef,
+                          files: file,
+                        },
+                      })
+                    }
+                  })
+              }
+            })
         }
       })
   }
@@ -143,7 +164,11 @@ const Freshman = () => {
                       Form Title
                       <input type="text" class="uploadInput"></input>
                       Your Name
-                      <input type="text" class="uploadInput" onChange={(e) => setName(e.target.value)}></input>
+                      <input
+                        type="text"
+                        class="uploadInput"
+                        onChange={(e) => setName(e.target.value)}
+                      ></input>
                     </div>
                     <div class="row">
                       <button
