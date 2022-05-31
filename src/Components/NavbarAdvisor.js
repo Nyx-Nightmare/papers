@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+
 import logo from './Images/logo.bau2.png'
 import home from './Images/home.png'
 import homeg from './Images/home green.png'
@@ -8,13 +10,14 @@ import about from './Images/about.png'
 import aboutG from './Images/about green.png'
 
 const NavbarAdvisor = () => {
-  const id = window.location.pathname.substring(0, 15)
-  const style = window.location.pathname.substring(
-    16,
-    window.location.pathname.length,
-  )
-  const Forms = id + ' /Sent'
-  const About = id + ' /AboutA'
+  const id = window.location.pathname.substring(1, 7)
+  const style = window.location.pathname.substring(window.location.pathname-1, window.location.pathname)
+
+  const [ID,setID]=useState('')
+  const [name,setName]=useState('')
+  const [About,setA] = useState('')
+  const [Forms,setF] = useState('')
+  const [Home,setH] = useState('')
 
   let [showF, setShowF] = useState(true)
   let [showM, setShowM] = useState(true)
@@ -30,15 +33,16 @@ const NavbarAdvisor = () => {
 
   useEffect(() => {
     setStyle()
+    getName()
   })
   const setStyle = () => {
-    if (style === 'Sent') {
+    if (style === 't') {
       setShowF(false)
       setCSSF('nav-link-customG')
       setCSSFB('row nav-bodyG ')
     } 
     
-    else if (style === 'AboutA') {
+    else if (style === 'A') {
       setShowA(false)
       setCSSA('nav-link-customG')
       setCSSAB('row nav-bodyG ')
@@ -48,15 +52,33 @@ const NavbarAdvisor = () => {
       setCSSMB('row nav-bodyG')
     }
   }
+  const getName = () => {
+    axios
+      .post('http://localhost:3001/getName/admin', {
+        adminID: id,
+      })
+      .then((response) => {
+        if (response.data.message) {
+          console.log(response.data.message)
+        } else {
+          console.log(response.data)
+          setName(response.data[0].adminName)
+          setID(response.data[0].adminID)
+          setA('/'+ID+'/'+name+'/AboutA')
+          setF('/'+ID+'/'+name+'/Sent')
+          setH('/'+ID+'/'+name)
+        }
+      })
+  }
 
   return (
     <nav class="navbar navbar-light background2">
       <ul class="nav3 navbar-nav">
         <li class="nav-item row">
-          <a class="logo2" href={id}>
+          <a class="logo2" href={Home}>
             <img class="thumbnail" src={logo} alt="Beirut Arab University" />
           </a>
-          <a class="navbar-brand col-3" href={id}>
+          <a class="navbar-brand col-3" href={Home}>
             <h2 class="nav4">iForm</h2>
           </a>
         </li>
@@ -64,7 +86,7 @@ const NavbarAdvisor = () => {
         <li class="nav-item-custom ">
           <div class={CSSMB}>
             <div class="col-5">
-              <a href={id}>
+              <a href={Home}>
                 {showM ? (
                   <img
                     class="thumbnail2"
@@ -81,7 +103,7 @@ const NavbarAdvisor = () => {
               </a>
             </div>
             <div class="col-5">
-              <a class={CSSM} href={id}>
+              <a class={CSSM} href={Home}>
                 Home
                 <span class="visually-hidden">(current)</span>
               </a>

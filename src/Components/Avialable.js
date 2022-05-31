@@ -86,15 +86,38 @@ const Available = () => {
         if (response.data.message) {
           console.log(response.data.message)
         } else {
-          const Pending ='/'+id+'/Pending'
+          const Pending = '/' + id + '/Pending'
           console.log(file)
-          history(Pending, {
-            state: {
-              name: name,
-              filename: namef,
-              files: file,
-            },
-          })
+          axios
+            .post('http://localhost:3001/getID/admin', {
+              fileLevel: response.data[0].FormLevel,
+            })
+            .then((res) => {
+              if (res.data.message) {
+                console.log(res.data.message)
+              } else {
+                const admin =
+                  '/' + res.data[0].adminID + '/' + res.data[0].adminName
+                console.log(res.data)         
+                history(admin, {
+                  state: {
+                    name: name,
+                    filename: namef,
+                    files: file,
+                    id: id,
+                  },
+                })
+                
+                history(Pending, {
+                  state: {
+                    name: name,
+                    filename: namef,
+                    files: file,
+                  },
+                })       
+                
+              }
+            })
         }
       })
   }
@@ -267,9 +290,7 @@ const Available = () => {
                 <form onSubmit={handleSubmit}>
                   <div class="row">
                     <div class="col-7">
-                      <div
-                        class="uploadimg"
-                      >
+                      <div class="uploadimg">
                         <img src={upload} class="img2 mb-8" alt="" />
                         <br />
                         <label class="text-success ">
@@ -291,7 +312,8 @@ const Available = () => {
                         <input
                           type="text"
                           class="uploadInput"
-                          value={name} readOnly
+                          value={name}
+                          readOnly
                         ></input>
                       </div>
                       <div class="row">

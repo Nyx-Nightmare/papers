@@ -1,18 +1,34 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 import axios from 'axios'
 import { saveAs } from 'file-saver'
 import fresh from '../PDFs/Freshman.pdf'
 import upload from './Images/upload.png'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Freshman = () => {
   var history = useNavigate()
+  var navigate = useLocation()
+
   const [form, setform] = useState('')
   const [file, setFile] = useState('')
   const [name, setName] = useState('')
   const [isOpen, setIsOpen] = useState(false)
+  const [toggle, settoggel] = useState(true)
+  const [notice, setNotice] = useState(false)
+  const [notify, setnNotify] = useState('')
   const [namef, setNamef] = useState('')
+
+  useEffect(() => {
+    getNotice()
+  })
+
+  const getNotice= () => {
+    if( navigate.state != null && toggle){
+      setNotice(true)
+      setnNotify(navigate.state.status)
+    }
+  }
 
   const togglePopup = () => {
     setIsOpen(!isOpen)
@@ -70,7 +86,9 @@ const Freshman = () => {
                     if (res.data.message) {
                       console.log(res.data.message)
                     } else {
-                      const admin='/'+res.data[0].adminID +'/'+res.data[0].adminName
+                      const sentURL = '/Freshman'
+                      const admin =
+                        '/' + res.data[0].adminID + '/' + res.data[0].adminName
                       console.log(res.data)
                       history(admin, {
                         state: {
@@ -79,6 +97,7 @@ const Freshman = () => {
                           files: file,
                         },
                       })
+                      history(sentURL)
                     }
                   })
               }
@@ -87,7 +106,7 @@ const Freshman = () => {
       })
   }
   return (
-    <div class="background ">
+    <div class={"background "}>
       <Navbar />
       <div class="cardform">
         <div class="cardform-header">Available Forms</div>
@@ -184,6 +203,19 @@ const Freshman = () => {
             </div>
           ) : null}
         </div>
+        {notice ? (
+          <div>
+            <div class="alert alert-dismissible alert-success PopupNotice">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                onClick={()=>{setNotice(false); settoggel(false)}}
+              ></button>
+              <label class="notice">Your registration has been {notify}</label>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   )
