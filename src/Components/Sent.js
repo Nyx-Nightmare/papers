@@ -7,15 +7,20 @@ import axios from 'axios'
 const Sent = () => {
   var history = useLocation()
   var navigate = useNavigate()
+
   const [name, setName] = useState('Admin Name')
   const [ID, setID] = useState('')
-  const id = window.location.pathname.substring(1, 10)
-  const admin = '/' + ID + '/' + name
+
   const [notify, setNotification] = useState('')
-  const [notice, setNotice] = useState(true)
+  const [notice, setNotice] = useState(false)
+
   const [date, setDate] = useState('')
   const [files, setFiles] = useState('')
   const [isOpen, setIsOpen] = useState(false)
+  const [reason, setReason] = useState('')
+
+  const id = window.location.pathname.substring(1, 10)
+  const admin = '/' + ID + '/' + name
 
   useEffect(() => {
     setNotify()
@@ -105,6 +110,7 @@ const Sent = () => {
             filename: history.state.filename,
             files: history.state.files,
             status: 'Regected',
+            reason: reason,
           },
         })
         navigate(admin)
@@ -117,6 +123,7 @@ const Sent = () => {
             filename: history.state.filename,
             files: history.state.files,
             status: 'Regected',
+            reason: reason,
           },
         })
         navigate(admin)
@@ -131,6 +138,7 @@ const Sent = () => {
             filename: localStorage.getItem('review'),
             files: localStorage.getItem('files'),
             status: 'Regected',
+            reason: reason,
           },
         })
         navigate(admin)
@@ -143,6 +151,7 @@ const Sent = () => {
             filename: localStorage.getItem('review'),
             files: localStorage.getItem('files'),
             status: 'Regected',
+            reason: reason,
           },
         })
         navigate(admin)
@@ -229,6 +238,16 @@ const Sent = () => {
                         Regect
                       </button>
                     </div>
+                  </div>
+                  <div class="row">        
+                  <label class="comment">Add comment</label>            
+                    <input
+                      type="text"
+                      class="form-control adjust"
+                      onChange={(e) => {
+                        setReason(e.target.value)
+                      }}
+                    />
                   </div>
                 </div>
               ) : null}

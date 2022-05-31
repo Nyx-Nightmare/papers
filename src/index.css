@@ -16,7 +16,7 @@
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
   --bs-pink: #e83e8c;
-  --bs-red: #ff7851;
+  --bs-red: #e74c3c;
   --bs-orange: #fd7e14;
   --bs-yellow: #ffce67;
   --bs-green: #56cc9d;
@@ -47,6 +47,7 @@
   --bs-success-rgb: 86, 204, 157;
   --bs-info-rgb: 108, 195, 213;
   --bs-warning-rgb: 255, 206, 103;
+  --bs-red-rgb: 231, 76, 60;
   --bs-danger-rgb: 255, 120, 81;
   --bs-light-rgb: 248, 249, 250;
   --bs-dark-rgb: 52, 58, 64;
@@ -3919,8 +3920,8 @@ fieldset:disabled .btn {
   font-weight: 500;
   display: block;
   padding: 0.5rem 1rem;
-  margin-left:2rem;
-  margin-top:-2.5rem;
+  margin-left: 2rem;
+  margin-top: -2.5rem;
   text-decoration: none;
 }
 .nav-link-custom4 {
@@ -3938,29 +3939,29 @@ fieldset:disabled .btn {
   font-weight: 700;
   display: block;
   padding: 0.5rem 1rem;
-  margin-left:2rem;
-  margin-top:-2.5rem;
+  margin-left: 2rem;
+  margin-top: -2.5rem;
   text-decoration: none;
 }
 .nav-body {
   display: block;
-  width:100%;
-  height:4.063rem;
+  width: 100%;
+  height: 4.063rem;
   padding: 0rem 1rem;
   text-decoration: none;
-  background:transparent;
-  margin-bottom:1rem;
-  border-radius:5.188rem;
+  background: transparent;
+  margin-bottom: 1rem;
+  border-radius: 5.188rem;
 }
 .nav-bodyG {
   display: block;
-  width:100%;
-  height:4.063rem;
+  width: 100%;
+  height: 4.063rem;
   padding: 0rem 1rem;
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
   text-decoration: none;
-  background:var(--bs-white);
-  border-radius:5.188rem;
+  background: var(--bs-white);
+  border-radius: 5.188rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5793,7 +5794,7 @@ fieldset:disabled .btn {
     border-radius: 0;
   }
 }
-@media (max-width:74.999rem) {
+@media (max-width: 74.999rem) {
   .modal-fullscreen-xl-down {
     width: 100vw;
     max-width: none;
@@ -5815,7 +5816,7 @@ fieldset:disabled .btn {
     border-radius: 0;
   }
 }
-@media (max-width:87.499rem) {
+@media (max-width: 87.499rem) {
   .modal-fullscreen-xxl-down {
     width: 100vw;
     max-width: none;
@@ -7686,6 +7687,10 @@ fieldset:disabled .btn {
 .bg-danger {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
+}
+.bg-red {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-red-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-light {
   --bs-bg-opacity: 1;
@@ -10668,7 +10673,7 @@ legend {
   font-weight: 400;
   text-size-adjust: auto;
   width: 83%;
-  object-fit:contain ;
+  object-fit: contain;
   position: relative;
   background: rgba(237, 237, 237, 0.36);
   line-height: 4em;
@@ -10687,7 +10692,7 @@ legend {
   font-size: 1.2em;
   position: relative;
   width: 80%;
-  object-fit:contain ;
+  object-fit: contain;
   line-height: 4em;
   background: rgba(237, 237, 237, 0.36);
   background-clip: padding-box;
@@ -10718,22 +10723,22 @@ legend {
 }
 .thumbnail {
   margin-top: 0.4rem;
-  width:90%;
-  height:90%;
-  object-fit:contain ;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
 }
 .thumbnail2 {
   margin-top: 0.7rem;
-  width:80%;
-  height:80%;
-  object-fit:contain ;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
 }
 .thumbnail3 {
   margin-top: 0.4rem;
   margin-left: 0.4rem;
-  width:80%;
-  height:80%;
-  object-fit:contain ;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
 }
 .title {
   font-family: 'Montserrat';
@@ -10742,9 +10747,9 @@ legend {
   font-size: 3.75rem;
   text-align: center;
   text-size-adjust: auto;
-  width:100%;
-  height:100%;
-  object-fit:contain ;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   margin-top: 4.375rem;
   color: #878787;
   text-shadow: 0rem 0.25rem 0.625rem rgba(82, 82, 82, 0.35);
@@ -10760,9 +10765,9 @@ legend {
 }
 .image {
   position: absolute;
-  width:100%;
-  height:100%;
-  object-fit:contain ;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   right: 19.875rem;
   top: 3.125rem;
   filter: saturate(120%);
@@ -10784,7 +10789,6 @@ legend {
   -ms-flex-positive: 1;
   mix-blend-mode: normal;
 }
-
 
 .nav {
   font-family: 'Brawler';
@@ -10818,9 +10822,9 @@ legend {
 }
 .nav4 {
   font-family: 'Brawler';
-font-style: normal;
-font-weight: 700;
-font-size: 4.5vh;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 4.5vh;
   text-align: left;
   margin-top: 0.625rem;
   color: #646464;
@@ -10830,15 +10834,15 @@ font-size: 4.5vh;
 .btn-login {
   font-weight: 700;
   font-size: 1.563rem;
-  width:50%;
-  height:100%;
-  object-fit:contain ;
+  width: 50%;
+  height: 100%;
+  object-fit: contain;
   text-size-adjust: auto;
 }
 
 .cardform {
   height: 100%;
-  object-fit:contain ;
+  object-fit: contain;
   margin-top: 1.25rem;
   margin-left: 2.5rem;
   margin-right: 2.5rem;
@@ -10857,7 +10861,7 @@ font-size: 4.5vh;
 
 .cardform2 {
   height: 100%;
-  object-fit:contain ;
+  object-fit: contain;
   padding: 3rem 3rem;
   position: relative;
   -ms-flex-direction: column;
@@ -10870,7 +10874,7 @@ font-size: 4.5vh;
 }
 .cardform3 {
   width: 50%;
-  object-fit:contain ;
+  object-fit: contain;
   margin-top: 1.25rem;
   margin-left: 2.5rem;
   margin-right: 2.5rem;
@@ -10886,9 +10890,9 @@ font-size: 4.5vh;
   background: var(--bs-light);
 }
 .cardform4 {
-  width:100%;
-  height:100%;
-  object-fit:cover ;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   margin-top: -1.25rem;
   margin-left: 2.5rem;
   margin-right: 2.5rem;
@@ -10904,9 +10908,9 @@ font-size: 4.5vh;
   background: transparent;
 }
 .cardform5 {
-  width:50%;
-  height:50%;
-  object-fit:cover ;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
   margin-top: 1rem;
   padding: 1rem 1rem;
   position: relative;
@@ -10921,8 +10925,7 @@ font-size: 4.5vh;
 }
 .videocard {
   border-radius: 5.188rem 5.188rem 5.188rem 5.188rem;
-  margin-bottom:2rem;
-
+  margin-bottom: 2rem;
 }
 .cardform-header {
   padding: 0.5rem 1rem;
@@ -10953,12 +10956,11 @@ font-size: 4.5vh;
 }
 .background2 {
   background: linear-gradient(180deg, #f9f9f9 0%, #ececf0 100%);
-  
 }
-.back{
-  width:100%;
-  height:100%;
-  background-repeat:no-repeat;
+.back {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
 }
 .cardform-title {
   font-family: 'Brawler';
@@ -10987,8 +10989,8 @@ font-size: 4.5vh;
   font-family: 'Brawler';
   font-style: normal;
   font-size: 1.25rem;
-  width:50rem;
-  margin-top:4rem;
+  width: 50rem;
+  margin-top: 4rem;
 }
 
 .btn-form {
@@ -11070,25 +11072,25 @@ font-size: 4.5vh;
   font-family: 'Brawler';
   font-style: normal;
   font-weight: 500;
-  font-size:1.875rem;
+  font-size: 1.875rem;
   display: block;
-  margin-top:15rem;
-  margin-left:4rem;
+  margin-top: 15rem;
+  margin-left: 4rem;
   text-decoration: none;
-  background:transparent;
-  border:0rem;
+  background: transparent;
+  border: 0rem;
 }
 
 .video {
   width: 40rem;
   height: 20rem;
-  top:-4rem;
-  border-radius:3rem;
+  top: -4rem;
+  border-radius: 3rem;
 }
-.notification{
-  width:70%;
-  height:20%;
-  object-fit:cover ;
+.notification {
+  width: 70%;
+  height: 20%;
+  object-fit: cover;
 }
 
 .PopupNotice {
@@ -11097,8 +11099,8 @@ font-size: 4.5vh;
   left: 25%;
   top: 30%;
 
-  width: 50%;  
-  height:20%;
+  width: 50%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11110,39 +11112,48 @@ font-size: 4.5vh;
   left: 25%;
   top: 30%;
   border: 0.063rem solid rgba(0, 0, 0, 0.125);
-  width: 50%;  
-  height:20%;
+  width: 50%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-color: #6cc3d5 !important;
-  background:var(--bs-light);
-  border-radius:3rem;
+  background: var(--bs-light);
+  border-radius: 3rem;
 }
 .notice {
   font-family: 'Brawler';
   font-style: normal;
   font-weight: 500;
-  font-size:1.875rem;
+  font-size: 1.875rem;
 }
-.btn-notice{
-  margin-left:1rem;
+.btn-notice {
+  margin-left: 1rem;
   font-family: 'Brawler';
   font-style: normal;
   font-weight: 500;
-  font-size:1.875rem;
+  font-size: 1.875rem;
   color: #737373;
-  border:0px;
-  background:transparent;
+  border: 0px;
+  background: transparent;
 }
 
 .Pending {
 }
 .Accepted {
-  color:var(--bs-success)
+  color: var(--bs-success);
 }
 
 .Regected {
-  color:var(--bs-red)
+  color: var(--bs-red);
+}
+.adjust {
+  margin-bottom: 0.5rem;
+}
+.comment {
+  font-family: 'Brawler';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.5rem;
 }
