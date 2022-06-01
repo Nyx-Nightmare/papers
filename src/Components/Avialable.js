@@ -22,12 +22,29 @@ const Available = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [loginStatus, setloginStatus] = useState('')
   const [CSS, setCSS] = useState('')
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false)  
+  const [url, setURL] = useState('')
 
   var history = useNavigate()
 
   const togglePopup = () => {
     setIsOpen(!isOpen)
+  }
+
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = (error) => reject(error)
+    })
+  }
+
+  function handleChange(event) {
+    setFile(event.target.files)
+    getBase64(event.target.files[0]).then((data) => {
+      setURL(data)
+    })
   }
 
   const setleave = () => {
@@ -58,10 +75,6 @@ const Available = () => {
       saveAs(withdrawl, 'Withdrawl Form.pdf')
     }
   }
-  function handleChange(event) {
-    setFile(event.target.files)
-  }
-
   function handleSubmit(event) {
     event.preventDefault()
     const data = new FormData()
@@ -105,6 +118,7 @@ const Available = () => {
                     filename: namef,
                     files: file,
                     id: id,
+                    url:url
                   },
                 })
                 

@@ -39,11 +39,14 @@ const Profile = () => {
           ' has sent the following form ' +
           history.state.filename,
       )
+      console.log(history.state.url)
       localStorage.setItem('notice', notify)
       localStorage.setItem('name', history.state.name)
       localStorage.setItem('filename', history.state.filename)
       localStorage.setItem('files', history.state.files)
+      localStorage.setItem('url', history.state.url)
     } else if (localStorage.getItem('files') != null) {
+      console.log(localStorage.getItem('url'))
       setNotification(localStorage.getItem('notice'))
     }
   }
@@ -58,6 +61,7 @@ const Profile = () => {
             filename: history.state.filename,
             files: history.state.files,
             id: history.state.id,
+            url: history.state.url,
           },
         })
       } else {
@@ -67,6 +71,7 @@ const Profile = () => {
             name: history.state.name,
             filename: history.state.filename,
             files: history.state.files,
+            url: history.state.url,
           },
         })
       }
@@ -76,19 +81,21 @@ const Profile = () => {
         const sentURL = '/' + ID + '/' + name + '/Sent'
         navigate(sentURL, {
           state: {
-            name: history.state.name,
-            filename: history.state.filename,
-            files: history.state.files,
+            name:localStorage.getItem('name'),
+            filename: localStorage.getItem('filename'),
+            files: localStorage.getItem('files'),
             id: localStorage.getItem('id'),
+            url:  localStorage.getItem('url'),
           },
         })
       } else {
         const sentURL = '/' + ID + '/' + name + '/Sent'
         navigate(sentURL, {
           state: {
-            name: history.state.name,
-            filename: history.state.filename,
-            files: history.state.files,
+            name:localStorage.getItem('name'),
+            filename: localStorage.getItem('filename'),
+            files: localStorage.getItem('files'),
+            url:  localStorage.getItem('url'),
           },
         })
       }

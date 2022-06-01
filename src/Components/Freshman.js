@@ -16,17 +16,25 @@ const Freshman = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [toggle, settoggel] = useState(true)
   const [notice, setNotice] = useState(false)
-  const [notify, setnNotify] = useState('')
+  const [notify, setNotify] = useState('')
   const [namef, setNamef] = useState('')
+  const [url, setURL] = useState('')
+  const [reason, setReason] = useState('')
+  const [ CSS, setCSS] = useState('alert alert-dismissible alert-success PopupNotice')
 
   useEffect(() => {
     getNotice()
   })
 
-  const getNotice= () => {
-    if( navigate.state != null && toggle){
+  const getNotice = () => {
+    if (navigate.state != null && toggle) {
       setNotice(true)
-      setnNotify(navigate.state.status)
+      setNotify(navigate.state.status)
+      setReason(navigate.state.reason)
+      console.log(navigate.state.status)
+      if( navigate.state.status === 'Rejected'){
+        setCSS('alert alert-dismissible alert-danger PopupNotice')
+      }
     }
   }
 
@@ -47,8 +55,20 @@ const Freshman = () => {
       //saveAs(scholar, 'Scholarship.pdf')
     }
   }
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = (error) => reject(error)
+    })
+  }
+
   function handleChange(event) {
     setFile(event.target.files)
+    getBase64(event.target.files[0]).then((data) => {
+      setURL(data)
+    })
   }
 
   function handleSubmit(event) {
@@ -76,6 +96,7 @@ const Freshman = () => {
             .then((response) => {
               if (response.data.message) {
                 console.log(response.data.message)
+                
               } else {
                 console.log(response.data[0])
                 axios
@@ -89,15 +110,18 @@ const Freshman = () => {
                       const sentURL = '/Freshman'
                       const admin =
                         '/' + res.data[0].adminID + '/' + res.data[0].adminName
-                      console.log(res.data)
+                      console.log(res.data)         
                       history(admin, {
                         state: {
                           name: name,
                           filename: namef,
                           files: file,
+                          url: url
                         },
                       })
-                      history(sentURL)
+                      history(sentURL)             
+      
+                      
                     }
                   })
               }
@@ -106,7 +130,7 @@ const Freshman = () => {
       })
   }
   return (
-    <div class={"background "}>
+    <div class={'background '}>
       <Navbar />
       <div class="cardform">
         <div class="cardform-header">Available Forms</div>
@@ -205,14 +229,17 @@ const Freshman = () => {
         </div>
         {notice ? (
           <div>
-            <div class="alert alert-dismissible alert-success PopupNotice">
+            <div class={CSS}>
               <button
                 type="button"
                 class="btn-close"
                 data-bs-dismiss="alert"
-                onClick={()=>{setNotice(false); settoggel(false)}}
+                onClick={() => {
+                  setNotice(false)
+                  settoggel(false)
+                }}
               ></button>
-              <label class="notice">Your registration has been {notify}</label>
+              <label class="notice">Your registration has been {notify} <br/> Reason {reason}</label>
             </div>
           </div>
         ) : null}

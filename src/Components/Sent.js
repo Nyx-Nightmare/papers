@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import NavbarAdvisor from './NavbarAdvisor'
+import { Document, Page, pdfjs } from 'react-pdf'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 const Sent = () => {
   var history = useLocation()
@@ -16,11 +18,28 @@ const Sent = () => {
 
   const [date, setDate] = useState('')
   const [files, setFiles] = useState('')
+  const [url, setURL] = useState('')
   const [isOpen, setIsOpen] = useState(false)
+  const [show, setShow] = useState(false)
   const [reason, setReason] = useState('')
 
+  const [pageNumber, numPages] = useState(1)
   const id = window.location.pathname.substring(1, 10)
   const admin = '/' + ID + '/' + name
+
+  const onDocumentLoadSuccess = (Pages) => {
+    numPages(Pages)
+    if (Pages > 1) {
+      setShow(true)
+    }
+  }
+
+  const goToPrevPage = () => {
+    numPages(pageNumber - 1)
+  }
+  const goToNextPage = () => {
+    numPages(pageNumber + 1)
+  }
 
   useEffect(() => {
     setNotify()
@@ -48,7 +67,7 @@ const Sent = () => {
   const Accept = () => {
     if (history.state != null) {
       if (history.state.id) {
-        const sentURL = '/' + history.state.id + '/Pending'
+        const sentURL = '/' + history.state.id
         navigate(sentURL, {
           state: {
             name: history.state.name,
@@ -63,7 +82,7 @@ const Sent = () => {
         const sentURL = '/Freshman'
         navigate(sentURL, {
           state: {
-            name: history.state.name,
+            name: name,
             filename: history.state.filename,
             files: history.state.files,
             status: 'Accepted',
@@ -74,10 +93,10 @@ const Sent = () => {
       }
     } else if (localStorage.getItem('files') != null) {
       if (localStorage.getItem('id') != null) {
-        const sentURL = '/' + localStorage.getItem('id') + '/Pending'
+        const sentURL = '/' + localStorage.getItem('id')
         navigate(sentURL, {
           state: {
-            name: localStorage.getItem('name'),
+            name: name,
             filename: localStorage.getItem('review'),
             files: localStorage.getItem('files'),
             status: 'Accepted',
@@ -100,16 +119,16 @@ const Sent = () => {
       }
     }
   }
-  const Regect = () => {
+  const Reject = () => {
     if (history.state != null) {
       if (history.state.id) {
-        const sentURL = '/' + history.state.id + '/Pending'
+        const sentURL = '/' + history.state.id
         navigate(sentURL, {
           state: {
             name: history.state.name,
             filename: history.state.filename,
             files: history.state.files,
-            status: 'Regected',
+            status: 'Rejected',
             reason: reason,
           },
         })
@@ -122,7 +141,7 @@ const Sent = () => {
             name: history.state.name,
             filename: history.state.filename,
             files: history.state.files,
-            status: 'Regected',
+            status: 'Rejected',
             reason: reason,
           },
         })
@@ -131,13 +150,13 @@ const Sent = () => {
       }
     } else if (localStorage.getItem('files') != null) {
       if (localStorage.getItem('id') != null) {
-        const sentURL = '/' + localStorage.getItem('id') + '/Pending'
+        const sentURL = '/' + localStorage.getItem('id')
         navigate(sentURL, {
           state: {
             name: localStorage.getItem('name'),
             filename: localStorage.getItem('review'),
             files: localStorage.getItem('files'),
-            status: 'Regected',
+            status: 'Rejected',
             reason: reason,
           },
         })
@@ -150,7 +169,7 @@ const Sent = () => {
             name: localStorage.getItem('name'),
             filename: localStorage.getItem('review'),
             files: localStorage.getItem('files'),
-            status: 'Regected',
+            status: 'Rejected',
             reason: reason,
           },
         })
@@ -167,11 +186,13 @@ const Sent = () => {
       const current = new Date().toLocaleString()
       setDate(current)
       setFiles(history.state.files)
-      console.log(files)
+      console.log(history.state.url)
+      setURL(history.state.url)
       localStorage.setItem('review', history.state.filename)
       localStorage.setItem('name', history.state.name)
-      localStorage.setItem('files', files)
+      localStorage.setItem('files', history.state.files)
       localStorage.setItem('dateR', current)
+      localStorage.setItem('url', history.state.url)
       if (history.state.id) {
         console.log(history.state.id)
         localStorage.setItem('id', history.state.id)
@@ -181,6 +202,7 @@ const Sent = () => {
       setFiles(localStorage.getItem('files'))
       setNotification(localStorage.getItem('review').filename)
       setDate(localStorage.getItem('date'))
+      setURL(localStorage.getItem('url'))
     }
   }
   return (
@@ -216,7 +238,44 @@ const Sent = () => {
             <div class="row">
               {isOpen ? (
                 <div class="PopupNotice2">
-                  <div class="row"></div>
+                  <div class="row">
+                    <div>
+                      <div>
+                        <Document
+                          file={url}
+                          onLoadSuccess={onDocumentLoadSuccess}
+                        >
+                          <Page scale={2} pageNumber={pageNumber} />
+                        </Document>
+                      </div>
+                      <div class="form-group mt-5 offset-5">
+                        {show ? (
+                          <div class="row">
+                            <div class="col-2">
+                              <button
+                                class="btn btn-outline-dark"
+                                onClick={() => {
+                                  goToPrevPage()
+                                }}
+                              >
+                                Prev
+                              </button>
+                            </div>
+                            <div class="col-2">
+                              <button
+                                class="btn btn-outline-dark"
+                                onClick={() => {
+                                  goToNextPage()
+                                }}
+                              >
+                                Next
+                              </button>
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="col-5">
                       <button
@@ -232,15 +291,15 @@ const Sent = () => {
                       <button
                         class="btn btn-outline-danger "
                         onClick={() => {
-                          Regect()
+                          Reject()
                         }}
                       >
-                        Regect
+                        Reject
                       </button>
                     </div>
                   </div>
-                  <div class="row">        
-                  <label class="comment">Add comment</label>            
+                  <div class="row">
+                    <label class="comment">Add comment</label>
                     <input
                       type="text"
                       class="form-control adjust"

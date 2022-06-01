@@ -5,7 +5,6 @@ import commentPNG from './Images/comment.png'
 
 const Pending = () => {
   var history = useLocation()
-  var navigate = useLocation()
 
   const [notify, setNotification] = useState('')
   const [date, setDate] = useState('')
@@ -13,7 +12,7 @@ const Pending = () => {
   const [reason, setReason] = useState('')
   const [CSS, setCSS] = useState('cardform-header col-4 Pending')
   const [comment, showComment] = useState(false)
-  const [pic, showPic] = useState(true)
+  const [pic, showPic] = useState(false)
 
   useEffect(() => {
     setNotify()
@@ -21,7 +20,7 @@ const Pending = () => {
   })
   const showPNG = () => {
     if (status === 'Rejected') {
-      showPic(false)
+      showPic(true)
     }
   }
   const setNotify = () => {
@@ -43,10 +42,10 @@ const Pending = () => {
         setCSS('cardform-header col-4 ' + status)
         setSatus('Pending')
         setReason(history.state.reason)
-        localStorage.setItem('files', notify)
+        localStorage.setItem('files', history.state.filename)
         localStorage.setItem('date', current)
-        localStorage.setItem('status', status)
-        localStorage.setItem('reason', reason)
+        localStorage.setItem('status', 'Pending')
+        localStorage.setItem('reason', history.state.reason)
       }
     } else if (localStorage.getItem('files') != null) {
       setNotification(localStorage.getItem('files'))
@@ -79,6 +78,7 @@ const Pending = () => {
                   <img
                     src={commentPNG}
                     class="adjust"
+                    alt=""
                     onClick={() => {
                       showComment(!comment)
                     }}

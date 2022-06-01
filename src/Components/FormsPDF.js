@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
-import Freshman from "../PDFs/Untitled 2.pdf"
-import { saveAs } from "file-saver";
+import Freshman from '../PDFs/Untitled 2.pdf'
+import { saveAs } from 'file-saver'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 export default class FromPDF extends Component {
   saveFile = () => {
-    saveAs(
-      Freshman,
-      "example.pdf"
-    );
-  };
+    saveAs(Freshman, 'example.pdf')
+  }
   state = { numPages: null, pageNumber: 1 }
 
   onDocumentLoadSuccess = ({ numPages }) => {
@@ -34,9 +31,9 @@ export default class FromPDF extends Component {
           </Document>
         </div>
         <div class="form-group mt-5 offset-5">
-        <div>
-      <button onClick={this.saveFile}>download</button>
-    </div>
+          <div>
+            <button onClick={this.saveFile}>download</button>
+          </div>
           <nav>
             <button onClick={this.goToPrevPage}>Prev</button>
             <button onClick={this.goToNextPage}>Next</button>
