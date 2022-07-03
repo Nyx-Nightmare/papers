@@ -33,11 +33,7 @@ const Profile = () => {
   }
   const setNotify = () => {
     if (history.state != null) {
-      setNotification(
-        history.state.name +
-          ' has sent the following form ' +
-          history.state.filename,
-      )
+      setNotification('The' + history.state.filename + ' has been evaluated ')
       console.log(history.state.url)
       localStorage.setItem('notice', notify)
       localStorage.setItem('name', history.state.name)
@@ -61,8 +57,8 @@ const Profile = () => {
             filename: history.state.filename,
             files: history.state.files,
             id: history.state.id,
-            url: history.state.url,            
-            status:history.state.status,
+            url: history.state.url,
+            status: history.state.status,
           },
         })
       } else {
@@ -73,8 +69,7 @@ const Profile = () => {
             filename: history.state.filename,
             files: history.state.files,
             url: history.state.url,
-            status:history.state.status,
-            
+            status: history.state.status,
           },
         })
       }
@@ -89,7 +84,7 @@ const Profile = () => {
             files: localStorage.getItem('files'),
             id: localStorage.getItem('id'),
             url: localStorage.getItem('url'),
-            status:localStorage.getItem('status'),
+            status: localStorage.getItem('status'),
           },
         })
       } else {
@@ -100,7 +95,7 @@ const Profile = () => {
             filename: localStorage.getItem('filename'),
             files: localStorage.getItem('files'),
             url: localStorage.getItem('url'),
-            status:localStorage.getItem('status'),
+            status: localStorage.getItem('status'),
           },
         })
       }
